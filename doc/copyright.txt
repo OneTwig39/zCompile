@@ -1,0 +1,5 @@
+Copyright (c) | © 2026 OneTwig39
+
+The source code of this build tool is free and open source and may be modified and distributed under the terms of the GNU General Public Licence v3 provided in licence.txt.
+The binaries outputted by this program are not considered derivitive works of the build tool and are licenced based off of the interpreters bundled or the compilers used to build them which is your responsibility to follow and are not resitricted by the licence of this build tool itself.
+Any redistributions of this build tool must follow the GNU General Public Licence v3 and include the files licence.txt and copyright.txt as well as the notice at the top of the script.
