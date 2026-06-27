@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>zCompile Doumentation</title>
+		<style>
+			h1, h2, h3, h4, p {
+				font-family: system-ui;
+			}
+			.code {
+				background: #ddd;
+				border-radius: 5px;
+				padding: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>⚠️ If you plan to distribute your project in any way please read the section under "Licensing"</p>
+		<h1>Setting up your project</h1>
+		<p>Create a folder for your project and in that folder make</p>
+		<p>The file "app.xml"</p>
+		<p>The folder "src"</p>
+		<h2>app.xml</h2>
+		<p>If you dont know xml you must learn it</p>
+		<p>You must format it like this</p>
+		<div class="code"><code>
+			&#60;app&#62; &#60;!-- Use the app tag to define your app --&#62;
+			<br>
+			&#160;&#160;&#160;&#160;&#60;app id="nameofexe"&#62;app.py&#60;/app&#62; &#60;!-- The app tag will define an exe, this one is called nameofexe.exe and will run app.py --&#62;
+			<br>
+			&#160;&#160;&#160;&#160;&#60;app id="nameofexe2"&#62;path/to/app.js&#60;/app&#62; &#60;!-- You may have multiple exes, they can be in subdirectories and can be in any supported language --&#62;
+			<br>
+			&#160;&#160;&#160;&#160;&#60;lib id="nameoflib"&#62;lib.py&#60;app&#62; &#60;!-- The lib tag will define a library which can be called by other languages using their built in library system --&#62;
+			<br>
+			&#60;/app&#62;
+		</code></div>
+		<p>If you end a script path with a / you can have multifile scripts</p>
+		<p>For every script the id tag is required as an identifier however you can also have other tags</p>
+		<h3>Tags</h3>
+		<h4>Runtime</h4>
+		<p>You can set runtime to runtimename@runtimeversion or runtimename if versionless to set a custom runtime</p>
+		<h4>Ui</h4>
+		<p>You can set ui to console to show a console or to none to show none which is useful for background tasks or guis (&#60;app&#62; only)</p>
+		<h4>Lib</h4>
+		<p>Space seperated values of libraries to install using a package manager</p>
+		<p>Pip for winpython, Npm for node, Cargo for rustc</p>
+		<p>If using cargo you can add symbols and declare it like libraryname@libraryversion$feature1$feature2</p>
+		<h2>src</h2>
+		<p>This folder will contain all your source code and all file references in app.xml will reference the root of this folder</p>
+		<h2>doc</h2>
+		<p>Optionally you can have a folder called doc in your project root and all files here will be copied into the root of dst</p>
+		<h1>Using libs</h1>
+		<p>If you set a script as a &#60;lib&#62; you will be able to call it from other scripts</p>
+		<p>You will be able to communicate via the basic std operations. stdarg, stdin, stdout, stdexit</p>
+		<p>Below are examples for each language that supports calling others</p>
+		<h2>Node</h2>
+		<div class="code"><code>
+			const libname = require("libname");
+			<br>
+			<br>
+			const proc = libname(["argv1", "argv2"]) // returns ChildProcess object
+		</code></div>
+		<h2>Python, Winpython</h2>
+		<div class="code"><code>
+			import libname
+			<br>
+			<br>
+			proc = libname(["argv1", "argv2"]) // returns subprocess.Popen object
+		</code></div>
+		<h1>Installing modules</h1>
+		<p>In module.html you will find a list of modules you can install</p>
+		<p>To install a module click install on one of the modules and extract the downloaded file</p>
+		<p>Find which folder is required, either the same folder as the one extracted or if theres only one folder inside and nothing else, choose that folder</p>
+		<p>Rename that folder to the version of the module and in the same folder as zComp.exe go to module/&#60;module_name&#62;/ and put it with the version as the name</p>
+		<p>You may need to make these folders manually</p>
+		<p>You must install gcc in order to even use the packager</p>
+		<h1>Compiling your project</h1>
+		<p>Navigate to the project directory (the same directory as app.xml) and open your terminal</p>
+		<p>Call zComp.exe by either entering &#38; "C:\full\path\to\zComp.exe" or by adding the folder zComp.exe is in to PATH (you can google how to do this) and simply typing zcomp</p>
+		<p>If nothing errors, there will be a folder called dst with your compiled exes</p>
+		<h1>Licensing</h1>
+		<p>zCompile bundles lots of required runtimes into your project many of which require following specific licences</p>
+		<p>zCompile has no gaurantees over whether the modules can be distributed freely or which will be used and what licences must be followed</p>
+		<p>The responsibility is entirely on you to make sure you comply with the licences</p>
+		<p>If you know all the licenses that must be followed and you can follow them, zCompile dosent add any extra licenses that must be followed as long as you dont distribute zCompile itself</p>
+    </body>
+</html>
