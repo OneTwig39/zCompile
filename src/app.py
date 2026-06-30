@@ -713,82 +713,90 @@ for script in config:
 	if script.tag == "app" and not "ui" in script.attrib:
 		script.attrib["ui"] = "console"
 	if not "runtime" in script.attrib:
-		if os.path.splitext(script.text)[1] == ".ahk":
-			script.attrib["runtime"] = "ahk@2.0.26"
-		if os.path.splitext(script.text)[1] == ".asm":
-			script.attrib["runtime"] = "fasm@1.73.35 exe"
-		if os.path.splitext(script.text)[1] == ".bat":
-			script.attrib["runtime"] = "cmd"
-		if os.path.splitext(script.text)[1] == ".c":
-			script.attrib["runtime"] = "gcc@15.2.0.6 exe"
-		if os.path.splitext(script.text)[1] == ".d":
-			script.attrib["runtime"] = "ldc@1.42.0 exe"
-		if os.path.splitext(script.text)[1] == ".cmd":
-			script.attrib["runtime"] = "cmd"
-		if os.path.splitext(script.text)[1] == ".cpp":
-			script.attrib["runtime"] = "gcc@15.2.0.6 exe"
-		if os.path.splitext(script.text)[1] == ".cs":
-			script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
-		if os.path.splitext(script.text)[1] == ".dart":
-			script.attrib["runtime"] = "dart@3.11.12 exe"
-		if os.path.splitext(script.text)[1] == ".erl":
-			script.attrib["runtime"] = "erlang@29.0"
-		if os.path.splitext(script.text)[1] == ".f90":
-			script.attrib["runtime"] = "gcc@15.2.0.6 exe"
-		if os.path.splitext(script.text)[1] == ".fs":
-			script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
-		if os.path.splitext(script.text)[1] == ".go":
-			script.attrib["runtime"] = "go@1.26.1 exe"
-		if os.path.splitext(script.text)[1] == ".hs":
-			script.attrib["runtime"] = "ghc@9.14.1 exe"
-		if os.path.splitext(script.text)[1] == ".hx":
-			script.attrib["runtime"] = "haxe@4.3.7 node@24.14.0"
-		if os.path.splitext(script.text)[1] == ".java":
-			script.attrib["runtime"] = "openjdk@25.0.2"
-		if os.path.splitext(script.text)[1] == ".jl":
-			script.attrib["runtime"] = "julia@1.12.6"
-		if os.path.splitext(script.text)[1] == ".js":
-			script.attrib["runtime"] = "node@24.14.0"
-		if os.path.splitext(script.text)[1] == ".kt":
-			script.attrib["runtime"] = "kotlinc@2.3.20 openjdk@25.0.2"
-		if os.path.splitext(script.text)[1] == ".ll":
-			script.attrib["runtime"] = "llvm@22.1.0 exe"
-		if os.path.splitext(script.text)[1] == ".lua":
-			script.attrib["runtime"] = "lua@5.5.0"
-		if os.path.splitext(script.text)[1] == ".neko":
-			script.attrib["runtime"] = "neko@2.4.1"
-		if os.path.splitext(script.text)[1] == ".nim":
-			script.attrib["runtime"] = "nim@2.2.8 exe"
-		if os.path.splitext(script.text)[1] == ".php":
-			script.attrib["runtime"] = "php@8.5.5"
-		if os.path.splitext(script.text)[1] == ".pl":
-			script.attrib["runtime"] = "perl@5.42.2.1"
-		if os.path.splitext(script.text)[1] == ".ps1":
-			script.attrib["runtime"] = "powershell"
-		if os.path.splitext(script.text)[1] == ".py":
-			script.attrib["runtime"] = "python@3.14.3"
-		if os.path.splitext(script.text)[1] == ".r":
-			script.attrib["runtime"] = "r@4.6.0"
-		if os.path.splitext(script.text)[1] == ".rb":
-			script.attrib["runtime"] = "ruby@4.0.1"
-		if os.path.splitext(script.text)[1] == ".rs":
-			script.attrib["runtime"] = "rustc@1.94.0 exe"
-		if os.path.splitext(script.text)[1] == ".scala":
-			script.attrib["runtime"] = "scala@3.8.3 openjdk@25.0.2"
-		if os.path.splitext(script.text)[1] == ".sh":
-			script.attrib["runtime"] = "bash@2.54.0"
-		if os.path.splitext(script.text)[1] == ".ts":
-			script.attrib["runtime"] = "tsc@6.0.2 node@24.14.0"
-		if os.path.splitext(script.text)[1] == ".v":
-			script.attrib["runtime"] = "v@0.5 exe"
-		if os.path.splitext(script.text)[1] == ".vb":
-			script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
-		if os.path.splitext(script.text)[1] == ".vbs":
-			script.attrib["runtime"] = "cscript"
-		if os.path.splitext(script.text)[1] == ".wsf":
-			script.attrib["runtime"] = "cscript"
-		if os.path.splitext(script.text)[1] == ".zig":
-			script.attrib["runtime"] = "zig@0.16.0 exe"
+		if sys.platform == "win32":
+			if os.path.splitext(script.text)[1] == ".ahk":
+				script.attrib["runtime"] = "ahk@2.0.26"
+			if os.path.splitext(script.text)[1] == ".asm":
+				script.attrib["runtime"] = "fasm@1.73.35 exe"
+			if os.path.splitext(script.text)[1] == ".bat":
+				script.attrib["runtime"] = "cmd"
+			if os.path.splitext(script.text)[1] == ".c":
+				script.attrib["runtime"] = "mingw-gcc@15.2.0.6 exe"
+			if os.path.splitext(script.text)[1] == ".d":
+				script.attrib["runtime"] = "ldc@1.42.0 exe"
+			if os.path.splitext(script.text)[1] == ".cmd":
+				script.attrib["runtime"] = "cmd"
+			if os.path.splitext(script.text)[1] == ".cpp":
+				script.attrib["runtime"] = "mingw-gcc@15.2.0.6 exe"
+			if os.path.splitext(script.text)[1] == ".cs":
+				script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
+			if os.path.splitext(script.text)[1] == ".dart":
+				script.attrib["runtime"] = "dart@3.11.12 exe"
+			if os.path.splitext(script.text)[1] == ".erl":
+				script.attrib["runtime"] = "erlang@29.0"
+			if os.path.splitext(script.text)[1] == ".f90":
+				script.attrib["runtime"] = "mingw-gcc@15.2.0.6 exe"
+			if os.path.splitext(script.text)[1] == ".fs":
+				script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
+			if os.path.splitext(script.text)[1] == ".go":
+				script.attrib["runtime"] = "go@1.26.1 exe"
+			if os.path.splitext(script.text)[1] == ".hs":
+				script.attrib["runtime"] = "ghc@9.14.1 exe"
+			if os.path.splitext(script.text)[1] == ".hx":
+				script.attrib["runtime"] = "haxe@4.3.7 node@24.14.0"
+			if os.path.splitext(script.text)[1] == ".java":
+				script.attrib["runtime"] = "openjdk@25.0.2"
+			if os.path.splitext(script.text)[1] == ".jl":
+				script.attrib["runtime"] = "julia@1.12.6"
+			if os.path.splitext(script.text)[1] == ".js":
+				script.attrib["runtime"] = "node@24.14.0"
+			if os.path.splitext(script.text)[1] == ".kt":
+				script.attrib["runtime"] = "kotlinc@2.3.20 openjdk@25.0.2"
+			if os.path.splitext(script.text)[1] == ".ll":
+				script.attrib["runtime"] = "llvm@22.1.0 exe"
+			if os.path.splitext(script.text)[1] == ".lua":
+				script.attrib["runtime"] = "lua@5.5.0"
+			if os.path.splitext(script.text)[1] == ".neko":
+				script.attrib["runtime"] = "neko@2.4.1"
+			if os.path.splitext(script.text)[1] == ".nim":
+				script.attrib["runtime"] = "nim@2.2.8 mingw-gcc@15.2.0.6 exe"
+			if os.path.splitext(script.text)[1] == ".php":
+				script.attrib["runtime"] = "php@8.5.5"
+			if os.path.splitext(script.text)[1] == ".pl":
+				script.attrib["runtime"] = "perl@5.42.2.1"
+			if os.path.splitext(script.text)[1] == ".ps1":
+				script.attrib["runtime"] = "powershell"
+			if os.path.splitext(script.text)[1] == ".py":
+				script.attrib["runtime"] = "python@3.14.3"
+			if os.path.splitext(script.text)[1] == ".r":
+				script.attrib["runtime"] = "r@4.6.0"
+			if os.path.splitext(script.text)[1] == ".rb":
+				script.attrib["runtime"] = "ruby@4.0.1"
+			if os.path.splitext(script.text)[1] == ".rs":
+				script.attrib["runtime"] = "rustc@1.94.0 exe"
+			if os.path.splitext(script.text)[1] == ".scala":
+				script.attrib["runtime"] = "scala@3.8.3 openjdk@25.0.2"
+			if os.path.splitext(script.text)[1] == ".sh":
+				script.attrib["runtime"] = "bash@2.54.0"
+			if os.path.splitext(script.text)[1] == ".ts":
+				script.attrib["runtime"] = "tsc@6.0.2 node@24.14.0"
+			if os.path.splitext(script.text)[1] == ".v":
+				script.attrib["runtime"] = "v@0.5 exe"
+			if os.path.splitext(script.text)[1] == ".vb":
+				script.attrib["runtime"] = "dotnet@10.0.5.201 exe"
+			if os.path.splitext(script.text)[1] == ".vbs":
+				script.attrib["runtime"] = "cscript"
+			if os.path.splitext(script.text)[1] == ".wsf":
+				script.attrib["runtime"] = "cscript"
+			if os.path.splitext(script.text)[1] == ".zig":
+				script.attrib["runtime"] = "zig@0.16.0 exe"
+		if sys.platform == "linux":
+			if os.path.splitext(script.text)[1] == ".c":
+				script.attrib["runtime"] = "xpack-gcc@15.2.0.1 exe"
+			if os.path.splitext(script.text)[1] == ".cpp":
+				script.attrib["runtime"] = "xpack-gcc@15.2.0.1 exe"
+			if os.path.splitext(script.text)[1] == ".f90":
+				script.attrib["runtime"] = "xpack-gcc@15.2.0.1 exe"
 
 	module = []
 	version = []
@@ -835,50 +843,55 @@ for script in config:
 		module.append(tmpmod)
 		version.append(tmpver)
 
-	if module[-1] == "ahk":
-		cmd = [f"%MODULE%ahk/2.0.26/AutoHotkey64.exe", "%SCRIPT%ahk"]
-	if module[-1] == "bash":
-		cmd = [f"%MODULE%bash/2.54.0/bin/bash.exe", "-l", "%SCRIPT%sh"]
-	if module[-1] == "bun":
-		cmd = ["%MODULE%bun/1.3.14/bun.exe", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
-	if module[-1] == "cmd":
-		cmd = ["cmd", "/c", "%SCRIPT%" + os.path.splitext(script.text)[1][1:]]
-	if module[-1] == "cscript":
-		cmd = ["cscript", "//nologo", "%SCRIPT%" + os.path.splitext(script.text)[1][1:]]
-	if module[-1] == "deno":
-		cmd = ["%MODULE%deno/2.7.14/deno.exe", "run", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
-	if module[-1] == "exe":
-		cmd = ["%SCRIPT%exe"]
-	if module[-1] == "erlang":
-		cmd = ["%MODULE%erlang/29.0/bin/erl.exe", "-env", "ERL_CRASH_DUMP_SECONDS", "0", "-noshell", "-pa", "%SCRIPT%/", "-s", os.path.basename(os.path.splitext(script.text)[0]), os.path.basename(os.path.splitext(script.text)[0]), "-s", "init", "stop", "--"]
-	if module[-1] == "julia":
-		cmd = [f"%MODULE%julia/1.12.6/bin/julia.exe", "%SCRIPT%jl"]
-	if module[-1] == "lua":
-		cmd = ["%MODULE%lua/5.5.0/lua55.exe", "%SCRIPT%luac"]
-	if module[-1] == "neko":
-		cmd = ["%MODULE%neko/2.4.1/neko.exe", "%SCRIPT%n"]
-	if module[-1] == "node":
-		cmd = ["%MODULE%node/24.14.0/node.exe", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
-	if module[-1] == "openjdk":
-		cmd = ["%MODULE%openjdk/25.0.2/bin/java.exe", "-jar", "%SCRIPT%jar"]
-	if module[-1] == "perl":
-		cmd = ["%MODULE%perl/5.42.2.1/perl/bin/perl.exe", "%SCRIPT%pl"]
-	if module[-1] == "php":
-		cmd = ["%MODULE%php/8.5.5/php.exe", "%SCRIPT%php"]
-	if module[-1] == "powershell":
-		cmd = ["powershell", "-ExecutionPolicy", "Bypass", "-File", "%SCRIPT%ps1"]
-	if module[-1] == "python":
-		cmd = [f"%MODULE%python/{version[-1]}/python.exe", "%SCRIPT%pyc"]
-	if module[-1] == "r":
-		cmd = ["%MODULE%r/4.6.0/bin/Rscript.exe", "%SCRIPT%r"]
-	if module[-1] == "ruby":
-		cmd = ["%MODULE%ruby/4.0.1/bin/ruby.exe", "%SCRIPT%rb"]
-	if module[-1] == "winpython":
-		cmd = ["%MODULE%winpython/3.13.13/python/python.exe", "%SCRIPT%pyc"]
+	if sys.platform == "win32":
+		if module[-1] == "ahk":
+			cmd = [f"%MODULE%ahk/{version[-1]}/AutoHotkey64.exe", "%SCRIPT%ahk"]
+		if module[-1] == "bash":
+			cmd = [f"%MODULE%bash/{version[-1]}/bin/bash.exe", "-l", "%SCRIPT%sh"]
+		if module[-1] == "bun":
+			cmd = [f"%MODULE%bun/{version[-1]}/bun.exe", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
+		if module[-1] == "cmd":
+			cmd = ["cmd", "/c", "%SCRIPT%" + os.path.splitext(script.text)[1][1:]]
+		if module[-1] == "cscript":
+			cmd = ["cscript", "//nologo", "%SCRIPT%" + os.path.splitext(script.text)[1][1:]]
+		if module[-1] == "deno":
+			cmd = [f"%MODULE%deno/{version[-1]}/deno.exe", "run", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
+		if module[-1] == "exe":
+			cmd = ["%SCRIPT%exe"]
+		if module[-1] == "erlang":
+			cmd = [f"%MODULE%erlang/{version[-1]}/bin/erl.exe", "-env", "ERL_CRASH_DUMP_SECONDS", "0", "-noshell", "-pa", "%SCRIPT%/", "-s", os.path.basename(os.path.splitext(script.text)[0]), os.path.basename(os.path.splitext(script.text)[0]), "-s", "init", "stop", "--"]
+		if module[-1] == "julia":
+			cmd = [f"%MODULE%julia/{version[-1]}/bin/julia.exe", "%SCRIPT%jl"]
+		if module[-1] == "lua":
+			cmd = [f"%MODULE%lua/{version[-1]}/lua{"".join(version[-1].split(".")[:2])}.exe", "%SCRIPT%luac"]
+		if module[-1] == "neko":
+			cmd = [f"%MODULE%neko/{version[-1]}/neko.exe", "%SCRIPT%n"]
+		if module[-1] == "node":
+			cmd = [f"%MODULE%node/{version[-1]}/node.exe", "%SCRIPT%" + ("ts" if os.path.splitext(script.text)[1][1:] == "ts" and not "tsc" in module else "js")]
+		if module[-1] == "openjdk":
+			cmd = [f"%MODULE%openjdk/{version[-1]}/bin/java.exe", "-jar", "%SCRIPT%jar"]
+		if module[-1] == "perl":
+			cmd = [f"%MODULE%perl/{version[-1]}/perl/bin/perl.exe", "%SCRIPT%pl"]
+		if module[-1] == "php":
+			cmd = [f"%MODULE%php/{version[-1]}/php.exe", "%SCRIPT%php"]
+		if module[-1] == "powershell":
+			cmd = ["powershell", "-ExecutionPolicy", "Bypass", "-File", "%SCRIPT%ps1"]
+		if module[-1] == "python":
+			cmd = [f"%MODULE%python/{version[-1]}/python.exe", "%SCRIPT%pyc"]
+		if module[-1] == "r":
+			cmd = [f"%MODULE%r/{version[-1]}/bin/Rscript.exe", "%SCRIPT%r"]
+		if module[-1] == "ruby":
+			cmd = [f"%MODULE%ruby/{version[-1]}/bin/ruby.exe", "%SCRIPT%rb"]
+		if module[-1] == "winpython":
+			cmd = [f"%MODULE%winpython/{version[-1]}/python/python.exe", "%SCRIPT%pyc"]
+	if sys.platform == "linux":
+		if module[-1] == "exe":
+			cmd = ["%SCRIPT%"]
 
 	if script.tag == "app":
-		with open(os.path.join("dst", "boot.c"), "w") as f2:
-			f2.write(f"""\
+		if sys.platform == "win32":
+			with open(os.path.join("dst", "boot.c"), "w") as f2:
+				f2.write(f"""\
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
@@ -893,7 +906,7 @@ int main(int argc, char *argv[]) {{
 	*strrchr(exe, '\\\\') = '\\0';
 
 	char cmd[32768];
-	_snprintf(cmd, 32768, "{" ".join(f'\\"%s\\\\internal\\\\scripts\\\\{os.path.dirname(script.text.replace("/", "\\\\"))}\\"' if arg == "%SCRIPT%/" else f'\\"%s\\\\internal\\\\scripts\\\\{os.path.splitext(script.text)[0].replace("/", "\\\\") + "." + arg[8:]}\\"' if arg.startswith("%SCRIPT%") else f'\\"%s\\\\internal\\\\{arg[8:].replace("/", "\\\\")}\\"' if arg.startswith("%MODULE%") else f'{arg}' for arg in cmd)}"{"".join(", exe" if arg.startswith("%SCRIPT%") or arg.startswith("%MODULE%") else "" for arg in cmd)});
+	_snprintf(cmd, 32768, "{" ".join(f'\\"%s\\\\internal\\\\scripts\\\\{os.path.dirname(script.text.replace("/", "\\\\"))}\\"' if arg == "%SCRIPT%/" else f'\\"%s\\\\internal\\\\scripts\\\\{os.path.splitext(script.text)[0].replace("/", "\\\\").rstrip("\\\\") + "." + arg[8:]}\\"' if arg.startswith("%SCRIPT%") else f'\\"%s\\\\internal\\\\{arg[8:].replace("/", "\\\\")}\\"' if arg.startswith("%MODULE%") else f'{arg}' for arg in cmd)}"{"".join(", exe" if arg.startswith("%SCRIPT%") or arg.startswith("%MODULE%") else "" for arg in cmd)});
 
 	DWORD exit;
 
@@ -913,20 +926,24 @@ int main(int argc, char *argv[]) {{
 }}\
 """)
 
-		cmdln = [os.path.join(module_f, "gcc", "15.2.0.6", "bin", "gcc.exe"), "-o", os.path.join("dst", f"{script.attrib["id"]}.exe"), os.path.join("dst", "boot.c")]
+			cmdln = [os.path.join(module_f, "mingw-gcc", "15.2.0.6", "bin", "gcc.exe"), "-o", os.path.join("dst", f"{script.attrib["id"]}.exe"), os.path.join("dst", "boot.c")]
 
-		if script.attrib["ui"] != "console":
-			cmdln.append("-mwindows")
+			if script.attrib["ui"] != "console":
+				cmdln.append("-mwindows")
 
-		subprocess.run(cmdln)
-		os.remove(os.path.join("dst", "boot.c"))
+			subprocess.run(cmdln)
+			os.remove(os.path.join("dst", "boot.c"))
+
+		if sys.platform == "linux":
+			pass
 
 	if script.tag == "lib":
-		if os.path.isdir(os.path.join("dst", "internal", "node")):
-			os.mkdir(os.path.join("dst", "lib"))
+		if sys.platform == "win32":
+			if os.path.isdir(os.path.join("dst", "internal", "node")):
+				os.mkdir(os.path.join("dst", "lib"))
 
-			with open(os.path.join("dst", "lib", "package.json"), "w") as f2:
-				f2.write(f"""\
+				with open(os.path.join("dst", "lib", "package.json"), "w") as f2:
+					f2.write(f"""\
 {{
 	"name": "{script.attrib["id"]}",
 	"version": "1.0.0",
@@ -934,27 +951,41 @@ int main(int argc, char *argv[]) {{
 }}\
 """)
 
-			with open(os.path.join("dst", "lib", "index.js"), "w") as f2:
-				f2.write(f"""\
+				with open(os.path.join("dst", "lib", "index.js"), "w") as f2:
+					f2.write(f"""\
 const {{ spawn }} = require("child_process");
 const path = require("path");
 
 function moduleFn(argv) {{
-	return spawn({("".join((f'path.join(path.dirname(path.dirname(__dirname)), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'path.join(path.dirname(path.dirname(__dirname)), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'path.join(path.dirname(path.dirname(__dirname)), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"') + (", [" if i == 0 else ", ") for i, arg in enumerate(cmd))).removesuffix(", ")}].concat(argv));
+	return spawn({("".join((f'path.join(path.dirname(path.dirname(__dirname)), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'path.join(path.dirname(path.dirname(__dirname)), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\").rstrip("\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'path.join(path.dirname(path.dirname(__dirname)), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"') + (", [" if i == 0 else ", ") for i, arg in enumerate(cmd))).removesuffix(", ")}].concat(argv));
 }}
 
 module.exports = moduleFn;\
 """)
 
-			subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "pack"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "lib"))
-			subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "pack"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "lib"))
-			subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "install", os.path.abspath(os.path.join("dst", "lib", script.attrib["id"] + "-1.0.0.tgz"))], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "internal"))
+				subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "pack"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "lib"))
+				subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "pack"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "lib"))
+				subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "install", os.path.abspath(os.path.join("dst", "lib", script.attrib["id"] + "-1.0.0.tgz"))], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=os.path.join("dst", "internal"))
 
-			shutil.rmtree(os.path.join("dst", "lib"))
+				shutil.rmtree(os.path.join("dst", "lib"))
 
-		if os.path.isdir(os.path.join("dst", "internal", "python")):
-			for v in os.listdir(os.path.join("dst", "internal", "python")):
-				with open(os.path.join("dst", "internal", "python", v, script.attrib["id"] + ".py"), "w") as f2:
+			if os.path.isdir(os.path.join("dst", "internal", "python")):
+				for v in os.listdir(os.path.join("dst", "internal", "python")):
+					with open(os.path.join("dst", "internal", "python", v, script.attrib["id"] + ".py"), "w") as f2:
+						f2.write(f"""\
+import os
+import subprocess
+import sys
+
+class _module:
+	def __call__(self, argv):
+		return subprocess.Popen([{", ".join(f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\").rstrip("\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"' for arg in cmd)}] + argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+
+sys.modules[__name__] = _module()\
+""")
+
+			if os.path.isdir(os.path.join("dst", "internal", "winpython")):
+				with open(os.path.join("dst", "internal", "winpython", "3.13.13", "python", "Lib", script.attrib["id"] + ".py"), "w") as f2:
 					f2.write(f"""\
 import os
 import subprocess
@@ -962,21 +993,7 @@ import sys
 
 class _module:
 	def __call__(self, argv):
-		return subprocess.Popen([{", ".join(f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"' for arg in cmd)}] + argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-
-sys.modules[__name__] = _module()\
-""")
-
-		if os.path.isdir(os.path.join("dst", "internal", "winpython")):
-			with open(os.path.join("dst", "internal", "winpython", "3.13.13", "python", "Lib", script.attrib["id"] + ".py"), "w") as f2:
-				f2.write(f"""\
-import os
-import subprocess
-import sys
-
-class _module:
-	def __call__(self, argv):
-		return subprocess.Popen([{", ".join(f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"' for arg in cmd)}] + argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+		return subprocess.Popen([{", ".join(f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "scripts", "{os.path.dirname(script.text.replace("/", "\\\\"))}")' if arg == "%SCRIPT%/" else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "scripts", "{os.path.splitext(script.text)[0].replace("/", "\\\\").rstrip("\\\\") + "." + arg[8:]}")' if arg.startswith("%SCRIPT%") else f'os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))), "{arg[8:].replace("/", "\\\\")}")' if arg.startswith("%MODULE%") else f'"{arg}"' for arg in cmd)}] + argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 sys.modules[__name__] = _module()\
 """)
@@ -1008,78 +1025,68 @@ for script in config:
 		if os.path.isdir(f):
 			if step == "maven":
 				env = os.environ.copy()
-				env["JAVA_HOME"] = os.path.join(module_f, "openjdk", "25.0.2")
+				env["JAVA_HOME"] = os.path.join(module_f, "openjdk", version[i+1])
 
-				subprocess.run([os.path.join(module_f, "maven", "3.9.14", "bin", "mvn.cmd"), "package"], cwd=f, env=env)
+				subprocess.run([os.path.join(module_f, "maven", version[i], "bin", "mvn.cmd"), "package"], cwd=f, env=env)
 				shutil.copyfile(os.path.join(f, "target", [f2 for f2 in os.listdir(os.path.join(f, "target")) if os.path.isfile(os.path.join(f, "target", f2))][0]), f.rstrip("\\") + ".jar")
 
-			if i == 0 and step == "openjdk":
-				cmdln = [os.path.join(module_f, "openjdk", "25.0.2", "bin", "javac.exe")]
-
-				for root, dirs, file in os.walk(os.path.join(f)):
-					for f2 in file:
-						if os.path.splitext(f2)[1] == ".java":
-							cmdln.append(os.path.abspath(os.path.join(root, f2)))
-
-				subprocess.run(cmdln)
-
-				with open(os.path.join(f, "manifest.txt"), "r") as f2:
-					subprocess.run([os.path.join(module_f, "java", "bin", "jar.exe"), "cfm", os.path.abspath(f).rstrip("\\") + ".jar", "manifest.txt", re.search("Main-Class:\\s*([^.]+)", f2.read()).group(1)], cwd=f)
+			if step == "openjdk" and i == 0:
+				subprocess.run([os.path.join(module_f, "openjdk", version[i], "bin", "javac.exe"), "-d", os.path.join(f, "bin"), os.path.join(f, "src", "*.java")])
+				subprocess.run([os.path.join(module_f, "openjdk", version[i], "bin", "jar.exe"), "cfm", os.path.abspath(f).rstrip("\\") + ".jar", "manifest.mf", "-C", "bin", "."], cwd=f)
 
 			shutil.rmtree(f)
 
 		if os.path.isfile(f):
 			if step == "dart":
-				subprocess.run([os.path.join(module_f, "dart", "3.11.12", "bin", "dart.exe"), "compile", "exe", f])
+				subprocess.run([os.path.join(module_f, "dart", version[i], "bin", "dart.exe"), "compile", "exe", f])
 				os.remove(f)
 
 			if step == "dotnet":
 				if os.path.splitext(f)[1] == ".cs":
-					subprocess.run([os.path.join(module_f, "dotnet", "10.0.5.201", "dotnet.exe"), "new", "console", "-lang", "C#", "-n", "app"], cwd="dst")
+					subprocess.run([os.path.join(module_f, "dotnet", version[i], "dotnet.exe"), "new", "console", "-lang", "C#", "-n", "app"], cwd="dst")
 					shutil.copyfile(f, os.path.join("dst", "app", "Program.cs"))
 				if os.path.splitext(f)[1] == ".fs":
-					subprocess.run([os.path.join(module_f, "dotnet", "10.0.5.201", "dotnet.exe"), "new", "console", "-lang", "F#", "-n", "app"], cwd="dst")
+					subprocess.run([os.path.join(module_f, "dotnet", version[i], "dotnet.exe"), "new", "console", "-lang", "F#", "-n", "app"], cwd="dst")
 					shutil.copyfile(f, os.path.join("dst", "app", "Program.fs"))
 				if os.path.splitext(f)[1] == ".vb":
-					subprocess.run([os.path.join(module_f, "dotnet", "10.0.5.201", "dotnet.exe"), "new", "console", "-lang", "VB", "-n", "app"], cwd="dst")
+					subprocess.run([os.path.join(module_f, "dotnet", version[i], "dotnet.exe"), "new", "console", "-lang", "VB", "-n", "app"], cwd="dst")
 					shutil.copyfile(f, os.path.join("dst", "app", "Program.vb"))
 
-				subprocess.run([os.path.join(module_f, "dotnet", "10.0.5.201", "dotnet.exe"), "publish", "-c", "Release", "/p:PublishSingleFile=true"], cwd=os.path.join("dst", "app"))
-				shutil.copyfile(os.path.join("dst", "app", "bin", "release", "net10.0", "win-x64", "publish", "app.exe"), os.path.splitext(f)[0] + ".exe")
+				subprocess.run([os.path.join(module_f, "dotnet", version[i], "dotnet.exe"), "publish", "-c", "Release", "/p:PublishSingleFile=true"], cwd=os.path.join("dst", "app"))
+				shutil.copyfile(os.path.join("dst", "app", "bin", "release", f"net{".".join(version[i].split(".")[:2])}", "win-x64", "publish", "app.exe"), os.path.splitext(f)[0] + ".exe")
 				os.remove(f)
 				shutil.rmtree(os.path.join("dst", "app"))
 
 			if step == "erlang":
-				subprocess.run([os.path.join(module_f, "erlang", "29.0", "bin", "erlc.exe"), "-o", os.path.dirname(f), f])
+				subprocess.run([os.path.join(module_f, "erlang", version[i], "bin", "erlc.exe"), "-o", os.path.dirname(f), f])
 				os.remove(f)
 
 			if step == "fasm":
-				shutil.copytree(os.path.join(module_f, "fasm", "1.73.35", "INCLUDE"), os.path.join("dst", "app"))
+				shutil.copytree(os.path.join(module_f, "fasm", version[i], "INCLUDE"), os.path.join("dst", "app"))
 				shutil.copyfile(f, os.path.join("dst", "app", "app.asm"))
-				subprocess.run([os.path.join(module_f, "fasm", "1.73.35", "FASM.EXE"), os.path.join("dst", "app", "app.asm"), os.path.splitext(f)[0] + ".exe"])
+				subprocess.run([os.path.join(module_f, "fasm", version[i], "FASM.EXE"), os.path.join("dst", "app", "app.asm"), os.path.splitext(f)[0] + ".exe"])
 				os.remove(f)
 				shutil.rmtree(os.path.join("dst", "app"))
 
-			if step == "gcc":
+			if step == "mingw-gcc":
 				if os.path.splitext(f)[1] == ".c":
-					subprocess.run([os.path.join(module_f, "gcc", "15.2.0.6", "bin", "gcc.exe"), "-o", os.path.splitext(f)[0] + ".exe", f])
-
+					subprocess.run([os.path.join(module_f, "mingw-gcc", version[i], "bin", "gcc.exe"), "-o", os.path.splitext(f)[0] + ".exe", f])
 				if os.path.splitext(f)[1] == ".cpp":
-					subprocess.run([os.path.join(module_f, "gcc", "15.2.0.6", "bin", "g++.exe"), "-static", "-o", os.path.splitext(f)[0] + ".exe", f])
-
+					subprocess.run([os.path.join(module_f, "mingw-gcc", version[i], "bin", "g++.exe"), "-static", "-o", os.path.splitext(f)[0] + ".exe", f])
 				if os.path.splitext(f)[1] == ".f90":
-					subprocess.run([os.path.join(module_f, "gcc", "15.2.0.6", "bin", "gfortran.exe"), "-static", "-o", os.path.splitext(f)[0] + ".exe", f])
+					subprocess.run([os.path.join(module_f, "mingw-gcc", version[i], "bin", "gfortran.exe"), "-static", "-o", os.path.splitext(f)[0] + ".exe", f])
 
-				os.remove(f)
+				if os.path.splitext(f)[1] != ".exe":
+					os.remove(f)
 
 			if step == "ghc":
-				subprocess.run([os.path.join(module_f, "ghc", "9.14.1", "bin", "ghc.exe"), f])
+				subprocess.run([os.path.join(module_f, "ghc", version[i], "bin", "ghc.exe"), f])
 				os.remove(f)
 				os.remove(os.path.splitext(f)[0] + ".hi")
 				os.remove(os.path.splitext(f)[0] + ".o")
 
 			if step == "go":
-				subprocess.run([os.path.join(module_f, "go", "1.26.1", "bin", "go.exe"), "build", "-o", os.path.splitext(f)[0] + ".exe", f])
+				subprocess.run([os.path.join(module_f, "go", version[i], "bin", "go.exe"), "build", "-o", os.path.splitext(f)[0] + ".exe", f])
 				os.remove(f)
 
 			if step == "haxe":
@@ -1087,10 +1094,10 @@ for script in config:
 				shutil.copyfile(f, os.path.join("dst", "app", "Main.hx"))
 				
 				if module[i+1] == "bun" or module[i+1] == "deno" or module[i+1] == "node":
-					subprocess.run([os.path.join(module_f, "haxe", "4.3.7", "haxe.exe"), "-main", "Main", "-js", "app.js"], cwd=os.path.join("dst", "app"))
+					subprocess.run([os.path.join(module_f, "haxe", version[i], "haxe.exe"), "-main", "Main", "-js", "app.js"], cwd=os.path.join("dst", "app"))
 					shutil.copyfile(os.path.join("dst", "app", "app.js"), os.path.splitext(f)[0] + ".js")
 				if module[i+1] == "python" or module[i+1] == "winpython":
-					subprocess.run([os.path.join(module_f, "haxe", "4.3.7", "haxe.exe"), "-main", "Main", "-python", "app.py"], cwd=os.path.join("dst", "app"))
+					subprocess.run([os.path.join(module_f, "haxe", version[i], "haxe.exe"), "-main", "Main", "-python", "app.py"], cwd=os.path.join("dst", "app"))
 					shutil.copyfile(os.path.join("dst", "app", "app.py"), os.path.splitext(f)[0] + ".py")
 					f = os.path.splitext(f)[0] + ".py"
 
@@ -1099,56 +1106,58 @@ for script in config:
 
 			if step == "kotlinc":
 				env = os.environ.copy()
-				env["PATH"] = os.path.join(module_f, "openjdk", "25.0.2", "bin") + ";" + os.environ.get("PATH")
-				subprocess.run(["cmd", "/c", os.path.join(module_f, "kotlinc", "2.3.20", "bin", "kotlinc.bat"), f, "-include-runtime", "-d", os.path.splitext(f)[0] + ".jar"], env=env)
+				env["PATH"] = os.path.join(module_f, "openjdk", version[i+1], "bin") + ";" + os.environ.get("PATH")
+				subprocess.run(["cmd", "/c", os.path.join(module_f, "kotlinc", version[i], "bin", "kotlinc.bat"), f, "-include-runtime", "-d", os.path.splitext(f)[0] + ".jar"], env=env)
 				os.remove(f)
 				f = os.path.splitext(f)[0] + ".jar"
 
 			if step == "ldc":
-				subprocess.run([os.path.join(module_f, "ldc", "1.42.0", "bin", "ldc2.exe"), os.path.basename(f)], cwd=os.path.dirname(f))
+				subprocess.run([os.path.join(module_f, "ldc", version[i], "bin", "ldc2.exe"), os.path.basename(f)], cwd=os.path.dirname(f))
 				os.remove(f)
 				os.remove(os.path.splitext(f)[0] + ".obj")
 
 			if step == "lua":
-				subprocess.run([os.path.join(module_f, "lua", "5.5.0", "luac55.exe"), "-o", os.path.splitext(f)[0] + ".luac", f])
+				subprocess.run([os.path.join(module_f, "lua", version[i], f"luac{"".join(version[i].split(".")[:2])}.exe"), "-o", os.path.splitext(f)[0] + ".luac", f])
 				os.remove(f)
 
 			if step == "llvm":
-				subprocess.run([os.path.join(module_f, "llvm", "22.1.0", "bin", "clang.exe"), "--target=x86_64-w64-mingw32", "-B", os.path.join(module_f, "gcc", "15.2.0.6", "x86_64-w64-mingw32", "bin"), "-I", os.path.join(module_f, "gcc", "15.2.0.6", "x86_64-w64-mingw32", "include"), "-L", os.path.join(module_f, "gcc", "15.2.0.6", "x86_64-w64-mingw32", "lib"), "-L", os.path.join(module_f, "gcc", "15.2.0.6", "lib", "gcc", "x86_64-w64-mingw32", "15.2.0"), "-o", os.path.splitext(f)[0] + ".exe", f])
+				subprocess.run([os.path.join(module_f, "llvm", version[i], "bin", "clang++.exe" if os.path.splitext(f)[1] == ".cpp" else "clang.exe"), "--target=x86_64-w64-mingw32", "-B", os.path.join(module_f, "mingw-gcc", "15.2.0.6", "x86_64-w64-mingw32", "bin"), "-I", os.path.join(module_f, "mingw-gcc", "15.2.0.6", "x86_64-w64-mingw32", "include"), "-L", os.path.join(module_f, "mingw-gcc", "15.2.0.6", "x86_64-w64-mingw32", "lib"), "-L", os.path.join(module_f, "mingw-gcc", "15.2.0.6", "lib", "gcc", "x86_64-w64-mingw32", "15.2.0"), "-o", os.path.splitext(f)[0] + ".exe", f])
 				os.remove(f)
 
 			if step == "neko":
-				subprocess.run([os.path.join(module_f, "neko", "2.4.1", "nekoc.exe"), f])
+				subprocess.run([os.path.join(module_f, "neko", version[i], "nekoc.exe"), f])
 				os.remove(f)
 
 			if step == "nim":
 				env = os.environ.copy()
-				env["PATH"] = os.path.abspath(os.path.join(module_f, "gcc", "15.2.0.6", "bin")) + ";" + os.environ.get("PATH")
-				subprocess.run([os.path.join(module_f, "nim", "2.2.8", "bin", "nim.exe"), "c", "--cc:gcc", f], env=env)
+				env["PATH"] = os.path.abspath(os.path.join(module_f, "mingw-gcc", version[i+1], "bin")) + ";" + os.environ.get("PATH")
+				subprocess.run([os.path.join(module_f, "nim", version[i], "bin", "nim.exe"), "c", "--cc:gcc", "-d:release", f], env=env)
 				os.remove(f)
+
+				f = os.path.splitext(f)[0] + ".exe"
 
 			if step == "node":
 				if "lib" in script.attrib:
 					for lib in script.attrib["lib"].split():
 						if lib not in npm:
 							npm.append(lib)
-							subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", "24.14.0", "npm.ps1"), "install", lib], cwd=os.path.join("dst", "internal"))
+							subprocess.run(["powershell", "-ExecutionPolicy", "Bypass", "-File", os.path.join(module_f, "node", version[i], "npm.ps1"), "install", lib], cwd=os.path.join("dst", "internal"))
 
 			if step == "openjdk":
 				if os.path.splitext(f)[1] == ".java":
-					subprocess.run([os.path.join(module_f, "openjdk", "25.0.2", "bin", "javac.exe"), f])
-					subprocess.run([os.path.join(module_f, "openjdk", "25.0.2", "bin", "jar.exe"), "cfe", os.path.splitext(os.path.basename(f))[0] + ".jar", os.path.splitext(os.path.basename(f))[0], os.path.splitext(os.path.basename(f))[0] + ".class"], cwd=os.path.dirname(f))
+					subprocess.run([os.path.join(module_f, "openjdk", version[i], "bin", "javac.exe"), f])
+					subprocess.run([os.path.join(module_f, "openjdk", version[i], "bin", "jar.exe"), "cfe", os.path.splitext(os.path.basename(f))[0] + ".jar", os.path.splitext(os.path.basename(f))[0], os.path.splitext(os.path.basename(f))[0] + ".class"], cwd=os.path.dirname(f))
 					os.remove(f)
 					os.remove(os.path.splitext(f)[0] + ".class")
 
 			if step == "python":
 				subprocess.run([os.path.join(module_f, "python", version[i], "python.exe"), "-m", "py_compile", f])
-				shutil.copy(os.path.join(os.path.dirname(f), "__pycache__", os.path.splitext(os.path.basename(f))[0] + f".cpython-{"".join(version[i].split(".")[:2])}.pyc"), os.path.join(os.path.dirname(f), os.path.splitext(os.path.basename(f))[0] + ".pyc"))
+				shutil.copy(os.path.join(os.path.dirname(f), "__pycache__", f"{os.path.splitext(os.path.basename(f))[0]}.cpython-{"".join(version[i].split(".")[:2])}.pyc"), os.path.join(os.path.dirname(f), os.path.splitext(os.path.basename(f))[0] + ".pyc"))
 				os.remove(f)
 				shutil.rmtree(os.path.join(os.path.dirname(f), "__pycache__"))
 
 			if step == "rustc":
-				subprocess.run([os.path.join(module_f, "rustc", "1.94.0", "cargo", "bin", "cargo.exe"), "new", "app"], cwd="dst")
+				subprocess.run([os.path.join(module_f, "rustc", version[i], "cargo", "bin", "cargo.exe"), "new", "app"], cwd="dst")
 				shutil.copyfile(f, os.path.join("dst", "app", "src", "main.rs"))
 
 				if "lib" in script.attrib:
@@ -1182,25 +1191,25 @@ for script in config:
 
 						subprocess.run(cmdln, cwd=os.path.join("dst", "app"))
 
-				subprocess.run([os.path.join(module_f, "rustc", "1.94.0", "cargo", "bin", "cargo.exe"), "build", "--release"], cwd=os.path.join("dst", "app"))
+				subprocess.run([os.path.join(module_f, "rustc", version[i], "cargo", "bin", "cargo.exe"), "build", "--release"], cwd=os.path.join("dst", "app"))
 				shutil.copyfile(os.path.join("dst", "app", "target", "release", "app.exe"), os.path.splitext(f)[0] + ".exe")
 				os.remove(f)
 				shutil.rmtree(os.path.join("dst", "app"))
 
 			if step == "scala":
 				env = os.environ.copy()
-				env["PATH"] = os.path.join(module_f, "openjdk", "25.0.2", "bin") + ";" + os.environ.get("PATH")
-				subprocess.run(["cmd", "/c", os.path.join(module_f, "scala", "3.8.3", "bin", "scala.bat"), "--power", "package", f, "--assembly", "-o", os.path.splitext(f)[0] + ".jar"], env=env)
+				env["PATH"] = os.path.join(module_f, "openjdk", version[i+1], "bin") + ";" + os.environ.get("PATH")
+				subprocess.run(["cmd", "/c", os.path.join(module_f, "scala", version[i], "bin", "scala.bat"), "--power", "package", f, "--assembly", "-o", os.path.splitext(f)[0] + ".jar"], env=env)
 				os.remove(f)
 				shutil.rmtree(os.path.join(os.path.dirname(f), ".scala-build"))
 				f = os.path.splitext(f)[0] + ".jar"
 
 			if step == "tsc":
-				subprocess.run([os.path.join(module_f, "node", "24.14.0", "node.exe"), os.path.join(module_f, "tsc", "6.0.2", "bin", "tsc"), f])
+				subprocess.run([os.path.join(module_f, "node", "24.14.0", "node.exe"), os.path.join(module_f, "tsc", version[i], "bin", "tsc"), f])
 				os.remove(f)
 
 			if step == "v":
-				subprocess.run([os.path.join(module_f, "v", "0.5", "v.exe"), f])
+				subprocess.run([os.path.join(module_f, "v", version[i], "v.exe"), f])
 				os.remove(f)
 
 			if step == "winpython":
@@ -1208,14 +1217,24 @@ for script in config:
 					for lib in script.attrib["lib"].split():
 						if lib not in pip:
 							pip.append(lib)
-							subprocess.run([os.path.join("dst", "internal", "winpython", "3.13.13", "python", "python.exe"), "-m", "pip", "install", lib])
+							subprocess.run([os.path.join("dst", "internal", "winpython", version[i], "python", "python.exe"), "-m", "pip", "install", lib])
 
-				subprocess.run([os.path.join(module_f, "winpython", "3.13.13", "python", "python.exe"), "-m", "py_compile", f])
-				shutil.copy(os.path.join(os.path.dirname(f), "__pycache__", os.path.splitext(os.path.basename(f))[0] + f".cpython-313.pyc"), os.path.join(os.path.dirname(f), os.path.splitext(os.path.basename(f))[0] + ".pyc"))
+				subprocess.run([os.path.join(module_f, "winpython", version[i], "python", "python.exe"), "-m", "py_compile", f])
+				shutil.copy(os.path.join(os.path.dirname(f), "__pycache__", f"{os.path.splitext(os.path.basename(f))[0]}.cpython-{"".join(version[i].split(".")[:2])}.pyc"), os.path.join(os.path.dirname(f), os.path.splitext(os.path.basename(f))[0] + ".pyc"))
 				os.remove(f)
 				shutil.rmtree(os.path.join(os.path.dirname(f), "__pycache__"))
 
+			if step == "xpack-gcc":
+				if os.path.splitext(f)[1] == ".c":
+					subprocess.run([os.path.join(module_f, "xpack-gcc", version[i], "bin", "gcc"), "-o", os.path.splitext(f)[0], f])
+				if os.path.splitext(f)[1] == ".cpp":
+					subprocess.run([os.path.join(module_f, "xpack-gcc", version[i], "bin", "g++"), "-static", "-o", os.path.splitext(f)[0], f])
+				if os.path.splitext(f)[1] == ".f90":
+					subprocess.run([os.path.join(module_f, "xpack-gcc", version[i], "bin", "gfortran"), "-static", "-o", os.path.splitext(f)[0], f])
+
+				os.remove(f)
+
 			if step == "zig":
-				subprocess.run([os.path.join(module_f, "zig", "0.16.0", "zig.exe"), "build-exe", os.path.basename(f)], cwd=os.path.dirname(f))
+				subprocess.run([os.path.join(module_f, "zig", version[i], "zig.exe"), "build-exe", os.path.basename(f)], cwd=os.path.dirname(f))
 				os.remove(f)
 				os.remove(os.path.splitext(f)[0] + ".pdb")
